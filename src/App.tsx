@@ -7,6 +7,7 @@ import {
   Spinner,
   VStack,
   StackDivider,
+  Divider,
 } from "@chakra-ui/react";
 import { useQuery } from "@apollo/client";
 import { GET_NOTIFICATIONS } from "./services/notifications";
@@ -23,7 +24,8 @@ function App() {
   ) : (
     <Container p={4} maxWidth={"100%"} bg="white">
       <Heading pb={"20px"}>Notifications</Heading>
-      <Box px="40px" height={"70%"} overflow="auto">
+      <Divider borderColor={"gray.800"} />
+      <Box px="40px">
         {loading ? (
           <Spinner />
         ) : (
@@ -32,6 +34,8 @@ function App() {
             divider={<StackDivider borderColor="gray" />}
             spacing={4}
             align="stretch"
+            height={"80vh"}
+            overflow="auto"
           >
             {data?.getNotifications.map((item: INotification) => (
               <Notification key={item.id} item={item} />

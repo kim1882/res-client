@@ -1,5 +1,5 @@
 import { NotificationType } from "../../types";
-import { Check, DollarSign } from "@emotion-icons/feather";
+import { Info, Check, DollarSign } from "@emotion-icons/feather";
 import { Icon } from "@chakra-ui/react";
 
 interface IBadgeProps {
@@ -7,16 +7,22 @@ interface IBadgeProps {
 }
 
 const Badge = ({ type }: IBadgeProps) => {
-  return (
-    <Icon
-      m={4}
-      as={type === NotificationType.payIn ? DollarSign : Check}
-      strokeWidth="2px"
-      color="gray"
-      w={6}
-      h={6}
-    />
-  );
+  const styles = () => {
+    let badgeStyle = { icon: Info, color: "gray" };
+    switch (type) {
+      case NotificationType.payIn:
+        badgeStyle = { icon: DollarSign, color: "green" };
+        break;
+      case NotificationType.payOut:
+        badgeStyle = { icon: Check, color: "blue" };
+        break;
+    }
+    return badgeStyle;
+  };
+
+  const { icon, color } = styles();
+
+  return <Icon m={4} as={icon} strokeWidth="2px" color={color} w={6} h={6} />;
 };
 
 export default Badge;

@@ -1,4 +1,4 @@
-import { Flex, Box } from "@chakra-ui/react";
+import { Flex, Box, Text } from "@chakra-ui/react";
 import { INotification } from "../../types";
 import { formatDate } from "../../utils";
 import Badge from "../Badge";
@@ -16,9 +16,18 @@ const Notification = ({ item }: INotificationProps) => {
     <Flex alignItems={"center"}>
       <Badge type={type} />
       <Box>
-        <div>{title}</div>
-        <div>{content}</div>
-        <div>{date}</div>
+        <Text
+          fontSize={"lg"}
+          fontWeight="bold"
+          fontFamily={"Sans-Serif"}
+          color="gray.700"
+        >
+          {title}
+        </Text>
+        <Text fontSize={"md"}>{content}</Text>
+        <Text fontSize={"xs"} color="gray.500">
+          {date}
+        </Text>
       </Box>
     </Flex>
   );
